@@ -1,0 +1,17 @@
+# Run this command to start the database:
+# docker-compose up --build
+version: "3"
+services:
+  db:
+    hostname: 127.0.0.1
+    image: ankane/pgvector
+    ports:
+      - 5433:5432
+    restart: always
+    environment:
+      - POSTGRES_DB=api
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres 
+      
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
